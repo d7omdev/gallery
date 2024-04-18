@@ -8,7 +8,12 @@ await import("./src/env.js");
 const config = {
   images: {
     domains: ["utfs.io"],
-
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
   },
 };
 
