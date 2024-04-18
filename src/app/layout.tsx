@@ -4,7 +4,7 @@ import { Inter } from "next/font/google";
 
 const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-sans",
+  weight: ["400", "700"],
 });
 
 export const metadata = {
@@ -13,6 +13,15 @@ export const metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
+function TopNav() {
+  return (
+    <nav className="flex w-full items-center justify-between border-b bg-gray-800 p-4 text-xl font-semibold">
+      <div>Gallery</div>
+      <div>Sign In</div>
+    </nav>
+  );
+}
+
 export default function RootLayout({
   children,
 }: {
@@ -20,7 +29,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`font-sans ${inter.variable}`}>{children}</body>
+      <body className={`${inter.className} flex flex-col gap-4`}>
+        <TopNav />
+        {children}
+      </body>
     </html>
   );
 }

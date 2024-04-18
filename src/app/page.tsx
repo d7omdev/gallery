@@ -1,13 +1,33 @@
+import Image from "next/image";
 import Link from "next/link";
+
+const mockURLs = [
+  "https://utfs.io/f/2004e289-b54a-43df-a38e-c61902b571c0-x3t66g.jpg",
+  "https://utfs.io/f/f1cb7dca-6fd9-4b9a-ad2c-54205749d200-lgwsbe.jpg",
+  "https://utfs.io/f/b5a6f74e-c8e0-4dce-b4ab-4b44bbc74d0a-qj04u4.jpg",
+  "https://utfs.io/f/23b8ae75-0975-45ea-8666-bd95a149a65a-mngeo1.jpg",
+];
+
+const mockImages = mockURLs.map((url, index) => ({
+  id: index + 1,
+  url,
+}));
 
 export default function HomePage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-      <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-        <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-          Hello <span className="text-[hsl(280,100%,70%)]">Gallery</span>{" "}
-          {"(in progress)"}
-        </h1>
+    <main className="">
+      <div className="flex flex-wrap gap-2">
+        {[...mockImages, ...mockImages, ...mockImages].map((image) => (
+          <Link key={image.id} href={`/image/${image.id}`}>
+            <Image
+              src={image.url}
+              width={400}
+              height={400}
+              alt="image"
+              className="h-48 w-full rounded-md object-cover"
+            />
+          </Link>
+        ))}
       </div>
     </main>
   );
