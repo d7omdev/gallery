@@ -38,9 +38,11 @@ export default function RootLayout({
            */
           routerConfig={extractRouterConfig(ourFileRouter)}
         />
-        <body className={`${inter.className} flex flex-col gap-4`}>
-          <TopNav />
-          {children}
+        <body className={`${inter.className}`}>
+          <div className="flex h-screen flex-col">
+            <TopNav />
+            <main className=" top-10 h-full">{children}</main>
+          </div>
           {modal}
           <div id="modal-root" />
         </body>

@@ -2,6 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+*::-webkit-scrollbar {
+  width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #f1f1f146;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #888888ad;
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
 body {
   @apply bg-black text-white;
 }
