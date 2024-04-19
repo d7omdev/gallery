@@ -3,7 +3,7 @@ import "@uploadthing/react/styles.css";
 import { Inter } from "next/font/google";
 
 import { ClerkProvider } from "@clerk/nextjs";
-import { CSPostHogProvider } from "~/app/_analytics/providers";
+import { CSPostHogProvider } from "~/app/_analytics/provider";
 import TopNav from "./_components/topnav";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";

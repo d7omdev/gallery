@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useUploadThing } from "~/utils/uploadthing";
 import { toast } from "sonner";
-// import { usePostHog } from "posthog-js/react";
+import { usePostHog } from "posthog-js/react";
 
 // inferred input off useUploadThing
 type Input = Parameters<typeof useUploadThing>;
@@ -73,11 +73,11 @@ function LoadingSpinnerSVG() {
 export function UploadButton() {
   const router = useRouter();
 
-  // const posthog = usePostHog();
+  const posthog = usePostHog();
 
   const { inputProps } = useUploadThingInputProps("imageUploader", {
     onUploadBegin() {
-      // posthog.capture("upload_begin");
+      posthog.capture("upload_begin");
       toast(
         <div className="flex items-center gap-2 text-white">
           <LoadingSpinnerSVG /> <span className=" text-lg">Uploading...</span>
@@ -89,9 +89,11 @@ export function UploadButton() {
       );
     },
     onUploadError(error) {
-      // posthog.capture("upload_error", { error });
+      posthog.capture("upload_error", { error });
       toast.dismiss("upload-begin");
-      toast.error("Upload failed");
+      toast.error(`Upload failed`, {
+        duration: 5000,
+      });
     },
     onClientUploadComplete() {
       toast.dismiss("upload-begin");
@@ -102,16 +104,21 @@ export function UploadButton() {
   });
 
   return (
-    <div>
-      <label htmlFor="upload-button" className="cursor-pointer">
-        <UploadSVG />
-      </label>
-      <input
-        id="upload-button"
-        type="file"
-        className="sr-only"
-        {...inputProps}
-      />
+    <div className="flex flex-row">
+      <span className=" p-2 text-center text-xs font-light text-gray-500">
+        Up to 4MB, max 40
+      </span>
+      <div>
+        <label htmlFor="upload-button" className="cursor-pointer">
+          <UploadSVG />
+        </label>
+        <input
+          id="upload-button"
+          type="file"
+          className="sr-only"
+          {...inputProps}
+        />
+      </div>
     </div>
   );
 }
