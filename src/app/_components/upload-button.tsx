@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useUploadThing } from "~/utils/uploadthing";
-// import { toast } from "sonner";
+import { toast } from "sonner";
 // import { usePostHog } from "posthog-js/react";
 
 // inferred input off useUploadThing
@@ -57,6 +57,7 @@ function LoadingSpinnerSVG() {
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
       fill="white"
+      className="animate-spin"
     >
       <path
         d="M12,1A11,11,0,1,0,23,12,11,11,0,0,0,12,1Zm0,19a8,8,0,1,1,8-8A8,8,0,0,1,12,20Z"
@@ -78,24 +79,24 @@ export function SimpleUploadButton() {
   const { inputProps } = useUploadThingInputProps("imageUploader", {
     onUploadBegin() {
       // posthog.capture("upload_begin");
-      // toast(
-      //   <div className="flex items-center gap-2 text-white">
-      //     <LoadingSpinnerSVG /> <span className="text-lg">Uploading...</span>
-      //   </div>,
-      //   {
-      //     duration: 100000,
-      //     id: "upload-begin",
-      //   },
-      // );
+      toast(
+        <div className="flex items-center gap-2 text-white">
+          <LoadingSpinnerSVG /> <span className=" text-lg">Uploading...</span>
+        </div>,
+        {
+          duration: 100000,
+          id: "upload-begin",
+        },
+      );
     },
     onUploadError(error) {
       // posthog.capture("upload_error", { error });
-      // toast.dismiss("upload-begin");
-      // toast.error("Upload failed");
+      toast.dismiss("upload-begin");
+      toast.error("Upload failed");
     },
     onClientUploadComplete() {
-      // toast.dismiss("upload-begin");
-      // toast("Upload complete!");
+      toast.dismiss("upload-begin");
+      toast("Upload complete!");
 
       router.refresh();
     },
