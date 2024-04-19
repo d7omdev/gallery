@@ -11,18 +11,19 @@ export function Modal({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (!dialogRef.current?.open) {
       dialogRef.current?.showModal();
-      document.body.style.overflowY = "none";
+      document.body.classList.add("overflow-y-hidden");
     }
   }, []);
 
   function onDismiss() {
     router.back();
+    return document.body.classList.remove("overflow-y-hidden");
   }
 
   return createPortal(
     <dialog
       ref={dialogRef}
-      className="inset-0 z-50 h-auto w-screen bg-transparent text-white"
+      className=" fixed z-50 h-auto w-screen bg-transparent text-white"
       onClose={onDismiss}
       style={{ backdropFilter: "blur(8px)" }}
     >
@@ -39,9 +40,9 @@ export function Modal({ children }: { children: React.ReactNode }) {
         >
           <path
             stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
             d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
           />
         </svg>

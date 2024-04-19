@@ -11,7 +11,7 @@ async function Images() {
     <div className=" my-4 flex flex-wrap justify-center gap-4 px-6 py-4">
       {images.map((image, index) => (
         <div key={image.id + "-" + index} className="h-min">
-          <Link href={`/img/${image.id}`}>
+          <Link href={`/img/${image.id}`} scroll={false}>
             <Image
               className=" rounded-md border border-gray-500"
               src={image.url}
