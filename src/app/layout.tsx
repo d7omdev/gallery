@@ -38,7 +38,7 @@ export default function RootLayout({
            */
           routerConfig={extractRouterConfig(ourFileRouter)}
         />
-        <body className={`${inter.className}`}>
+        <body className={`${inter.className} dark`}>
           <div className="flex h-screen flex-col">
             <TopNav />
             <main className=" top-10 h-full">{children}</main>
