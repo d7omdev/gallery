@@ -10,7 +10,7 @@ async function Images() {
   return (
     <div className=" my-4 flex flex-wrap justify-center gap-4 px-6 py-4">
       {images.map((image, index) => (
-        <div key={image.id + "-" + index}>
+        <div key={image.id + "-" + index} className="h-min">
           <Link href={`/img/${image.id}`}>
             <Image
               className=" rounded-md border border-gray-500"
@@ -18,7 +18,8 @@ async function Images() {
               alt={image.name}
               style={{ objectFit: "contain" }}
               width={300}
-              height={192}
+              height={300}
+              priority
             />
           </Link>
         </div>

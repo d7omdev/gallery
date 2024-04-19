@@ -11,6 +11,7 @@ export function Modal({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (!dialogRef.current?.open) {
       dialogRef.current?.showModal();
+      document.body.style.overflowY = "none";
     }
   }, []);
 
@@ -21,7 +22,7 @@ export function Modal({ children }: { children: React.ReactNode }) {
   return createPortal(
     <dialog
       ref={dialogRef}
-      className="bg-zin h-screen w-screen bg-transparent text-white"
+      className="inset-0 z-50 h-auto w-screen bg-transparent text-white"
       onClose={onDismiss}
       style={{ backdropFilter: "blur(8px)" }}
     >

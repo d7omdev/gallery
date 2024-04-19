@@ -14,6 +14,7 @@ export default async function FullPageImage(props: { id: number }) {
       <img
         alt={image.name}
         src={image.url}
+        loading="lazy"
         className="h-auto object-contain md:w-2/3 lg:w-2/3"
       />
 
