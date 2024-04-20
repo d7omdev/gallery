@@ -3,6 +3,12 @@ import { useRouter } from "next/navigation";
 import { useUploadThing } from "~/utils/uploadthing";
 import { toast } from "sonner";
 import { usePostHog } from "posthog-js/react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "~/components/ui/tooltip";
 
 // inferred input off useUploadThing
 type Input = Parameters<typeof useUploadThing>;
@@ -104,21 +110,25 @@ export function UploadButton() {
   });
 
   return (
-    <div className="flex flex-row">
-      <span className=" p-2 text-center text-xs font-light text-gray-500">
-        Up to 4MB, max 40
-      </span>
-      <div>
-        <label htmlFor="upload-button" className="cursor-pointer">
-          <UploadSVG />
-        </label>
-        <input
-          id="upload-button"
-          type="file"
-          className="sr-only"
-          {...inputProps}
-        />
-      </div>
-    </div>
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <div className="inline-flex items-center justify-center whitespace-nowrap rounded-full p-1 text-2xl font-medium ring-offset-background transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2  disabled:pointer-events-none disabled:opacity-50">
+            <label htmlFor="upload-button" className="cursor-pointer ">
+              <UploadSVG />
+            </label>
+            <input
+              id="upload-button"
+              type="file"
+              className="sr-only"
+              {...inputProps}
+            />
+          </div>
+        </TooltipTrigger>
+        <TooltipContent className="mt-2">
+          <p>Images up to 4MB, Max 40</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
   );
 }

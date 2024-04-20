@@ -8,21 +8,30 @@ export const dynamic = "force-dynamic";
 async function Images() {
   const images = await getMyImages();
   return (
-    <div className=" my-4 flex flex-wrap justify-center gap-4 px-6 py-4">
+    <div className="m-8 grid place-items-center gap-4 md:grid-cols-2 xl:grid-cols-5">
       {images.map((image, index) => (
-        <div key={image.id + "-" + index} className="h-min">
-          <Link href={`/img/${image.id}`} scroll={false}>
-            <Image
-              className=" rounded-md border border-gray-500"
-              src={image.url}
-              alt={image.name}
-              style={{ objectFit: "contain" }}
-              width={300}
-              height={300}
-              priority
-            />
-          </Link>
-        </div>
+        <Link href={`/img/${image.id}`} scroll={false}>
+          <div
+            key={image.id + "-" + index}
+            className="flex transform cursor-pointer items-center overflow-hidden rounded-lg border border-gray-700 shadow-lg shadow-slate-900 transition-all duration-300 ease-in-out hover:scale-105 hover:border-gray-500 hover:shadow-slate-800 hover:shadow-slate-800"
+          >
+            <div className="overflow-hidden rounded shadow-lg shadow-slate-900">
+              <Image
+                className="h-48 w-96  object-cover"
+                src={image.url}
+                alt={`Image of ${image.name}`}
+                loading="lazy"
+                width={300}
+                height={200}
+              />
+              <div className=" max-w-60 px-1 py-2 ">
+                <div className="flex  items-baseline overflow-hidden text-ellipsis">
+                  <div className="truncate">{image.name}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Link>
       ))}
     </div>
   );

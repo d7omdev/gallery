@@ -23,13 +23,13 @@ export function Modal({ children }: { children: React.ReactNode }) {
   return createPortal(
     <dialog
       ref={dialogRef}
-      className=" fixed z-50 h-auto w-screen bg-transparent text-white"
+      className=" fixed z-50 h-auto w-screen bg-background/50 text-white"
       onClose={onDismiss}
       style={{ backdropFilter: "blur(8px)" }}
     >
       <button
         onClick={onDismiss}
-        className="absolute left-4 top-4  ms-auto inline-flex h-8 w-8 items-center justify-center rounded-full bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
+        className="absolute left-4 top-4 ms-auto inline-flex h-8 w-8 items-center justify-center rounded-full text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white "
       >
         <svg
           className="h-3 w-3"
