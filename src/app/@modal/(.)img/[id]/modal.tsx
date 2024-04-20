@@ -11,19 +11,17 @@ export function Modal({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (!dialogRef.current?.open) {
       dialogRef.current?.showModal();
-      document.body.classList.add("overflow-y-hidden");
     }
   }, []);
 
   function onDismiss() {
     router.back();
-    return document.body.classList.remove("overflow-y-hidden");
   }
 
   return createPortal(
     <dialog
       ref={dialogRef}
-      className=" fixed z-50 h-auto w-screen bg-background/50 text-white"
+      className="  z-50 h-screen w-screen bg-background/50 text-white"
       onClose={onDismiss}
       style={{ backdropFilter: "blur(8px)" }}
     >

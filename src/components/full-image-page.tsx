@@ -1,3 +1,5 @@
+import * as timeago from "timeago.js";
+
 import { clerkClient } from "@clerk/nextjs/server";
 import { deleteImage, getImage } from "~/server/queries";
 import { Button } from "~/components/ui/button";
@@ -6,16 +8,15 @@ export default async function FullPageImage(props: { id: number }) {
   const image = await getImage(props.id);
 
   const uploaderInfo = await clerkClient.users.getUser(image.userId);
+  const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const createdAt = new Date(image.createdAt).toISOString();
+  const timeStamp = timeago.format(createdAt, userTimezone);
 
-  const createdAt = new Date(image.createdAt)
-    .toLocaleDateString()
-    .split("T")[0];
   return (
     <section className="flex h-full flex-col justify-center md:flex-row lg:flex-row">
       <img
         alt={image.name}
         src={image.url}
-        loading="lazy"
         className="h-auto object-contain md:w-2/3 lg:w-2/3"
       />
 
@@ -25,12 +26,11 @@ export default async function FullPageImage(props: { id: number }) {
         </h2>
         <div className="flex flex-row justify-between pt-4">
           <p className="mt-2 block text-lg text-white/50">
-            Uploaded By:
+            By:
             <span className="p-2"> {uploaderInfo.fullName}</span>
           </p>
           <p className="mt-2 block text-lg text-white/50">
-            Created On:
-            <span className="p-2"> {createdAt}</span>
+            <span className="p-2"> {timeStamp}</span>
           </p>
         </div>
         <div className=" pt-10">

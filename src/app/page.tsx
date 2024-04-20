@@ -13,15 +13,15 @@ async function Images() {
         <Link href={`/img/${image.id}`} scroll={false}>
           <div
             key={image.id + "-" + index}
-            className="flex transform cursor-pointer items-center overflow-hidden rounded-lg border border-gray-700 shadow-lg shadow-slate-900 transition-all duration-300 ease-in-out hover:scale-105 hover:border-gray-500 hover:shadow-slate-800 hover:shadow-slate-800"
+            className="flex transform cursor-pointer items-center overflow-hidden rounded-lg border border-gray-700 shadow-lg shadow-slate-900 transition-all duration-300 ease-in-out hover:scale-105 hover:border-gray-500 hover:shadow-slate-800"
           >
             <div className="overflow-hidden rounded shadow-lg shadow-slate-900">
               <Image
-                className="h-48 w-96  object-cover"
+                className="h-48 w-96 object-cover"
                 src={image.url}
                 alt={`Image of ${image.name}`}
-                loading="lazy"
                 width={300}
+                priority
                 height={200}
               />
               <div className=" max-w-60 px-1 py-2 ">
