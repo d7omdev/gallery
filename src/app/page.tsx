@@ -8,7 +8,7 @@ export const dynamic = "force-dynamic";
 async function Images() {
   const images = await getMyImages();
   return (
-    <div className="m-8 grid place-items-center gap-4 md:grid-cols-2 xl:grid-cols-5">
+    <div className="m-8 grid place-items-center gap-4 md:grid-cols-2 xl:grid-cols-5 ">
       {images.map((image, index) => (
         <Link href={`/img/${image.id}`} scroll={false}>
           <div
