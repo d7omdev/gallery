@@ -18,7 +18,7 @@ const inter = Inter({
 export const metadata = {
   title: "Gallery",
   description: "A gallery of images",
-  icons: [{ rel: "icon", url: "/favicon.ico" }],
+  icons: [{ rel: "icon", url: "/gallery.svg" }],
 };
 
 export default function RootLayout({
