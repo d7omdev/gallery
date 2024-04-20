@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:root:has(.no-doc-scroll) {
+    overflow:hidden;
+  }
+
 dialog {
   max-width: 100vw;
   max-height: 100vh;

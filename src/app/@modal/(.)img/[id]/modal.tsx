@@ -21,10 +21,11 @@ export function Modal({ children }: { children: React.ReactNode }) {
   return createPortal(
     <dialog
       ref={dialogRef}
-      className="  z-50 h-screen w-screen bg-background/50 text-white"
+      className="  no-doc-scroll z-50  h-screen w-screen bg-background/50 text-white"
       onClose={onDismiss}
       style={{ backdropFilter: "blur(8px)" }}
     >
+      {children}
       <button
         onClick={onDismiss}
         className="absolute left-4 top-4 ms-auto inline-flex h-8 w-8 items-center justify-center rounded-full text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white "
@@ -44,9 +45,7 @@ export function Modal({ children }: { children: React.ReactNode }) {
             d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
           />
         </svg>
-        <span className="sr-only">Close</span>
       </button>
-      {children}
     </dialog>,
     document.getElementById("modal-root")!,
   );
