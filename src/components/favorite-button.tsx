@@ -1,18 +1,10 @@
 "use client";
 import { useState } from "react";
-import { Button } from "./ui/button";
-import { Heart } from "./ui/heartSVG";
+import Heart from "@react-sandbox/heart";
 
-const FavoriteButton = ({
-  favorite,
-  imageId,
-}: {
-  favorite: boolean;
-  imageId: number;
-}) => {
+const FavoriteButton = ({ favorite }: { favorite: boolean }) => {
   const [isFavorite, setIsFavorite] = useState(favorite);
-
-  const toggleFavorite = async () => {
+  const toggleFavorite = () => {
     setIsFavorite(!isFavorite);
 
     if (!favorite === isFavorite) {
@@ -21,14 +13,21 @@ const FavoriteButton = ({
   };
 
   return (
-    <Button
-      size={"icon"}
-      variant={"ghost"}
-      className="flex items-center justify-center rounded-full p-1.5 transition-transform duration-300 ease-in-out hover:scale-105 hover:bg-transparent"
-      onClick={toggleFavorite}
+    <button
+      onClick={() => {
+        toggleFavorite();
+      }}
     >
-      {isFavorite ? <Heart fill="#be1931" /> : <Heart fill="#fff" />}
-    </Button>
+      <Heart
+        width={30}
+        height={30}
+        className="hover: p-1"
+        active={isFavorite}
+        onClick={() => {
+          return null;
+        }}
+      />
+    </button>
   );
 };
 

@@ -9,7 +9,7 @@ export type ImageType = {
   userId: string;
   createdAt: Date;
   updatedAt: Date | null;
-  favorite: boolean;
+  favorite: boolean | null;
 };
 
 export default function Gallery({ images }: { images: ImageType[] }) {
@@ -28,13 +28,13 @@ function Image({ ...image }: ImageType) {
   return (
     <div className="relative grid grid-cols-2">
       <form
-        className="absolute left-0 top-0 z-10"
+        className="left- absolute top-0 z-10  "
         action={async () => {
           "use server";
           await favoriteImage(image.id);
         }}
       >
-        <FavoriteButton favorite={image.favorite} imageId={image.id} />
+        <FavoriteButton favorite={!!image.favorite} />
       </form>
       <BlurImage {...image} />
     </div>

@@ -23,6 +23,9 @@ dependencies:
   '@radix-ui/react-tooltip':
     specifier: ^1.0.7
     version: 1.0.7(@types/react-dom@18.2.25)(@types/react@18.2.79)(react-dom@18.2.0)(react@18.2.0)
+  '@react-sandbox/heart':
+    specifier: ^1.1.0
+    version: 1.1.0(react-dom@18.2.0)(react@18.2.0)
   '@sentry/nextjs':
     specifier: ^7.105.0
     version: 7.111.0(next@14.2.2)(react@18.2.0)
@@ -1465,6 +1468,16 @@ packages:
     resolution: {integrity: sha512-fyrgCaedtvMg9NK3en0pnOYJdtfwxUcNolezkNPUsoX57X8oQk+NkqcvzHXD2uKNij6GXmWU9NDru2IWjrO4BQ==}
     dependencies:
       '@babel/runtime': 7.24.4
+    dev: false
+
+  /@react-sandbox/heart@1.1.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-oGthkH936UyDnjfdBxRM/88Bimcg1eYgi3eITYp19bv0WkKMd2AD8Ede2hCK61SEkF3F2wmGUEF4Jdr17XgDXw==}
+    peerDependencies:
+      react: ^16.8 || ^17.0 || ^18.0
+      react-dom: ^16.8 || ^17.0 || ^18.0
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: false
 
   /@rollup/plugin-commonjs@24.0.0(rollup@2.78.0):

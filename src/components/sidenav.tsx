@@ -48,7 +48,7 @@ function Nav() {
         </CollapsibleContent>
       </Collapsible>
       <NavigationMenuItem>
-        <Link href="/" legacyBehavior passHref>
+        <Link href="/favorites" legacyBehavior passHref>
           <NavigationMenuLink className={navigationMenuTriggerStyle()}>
             <Heart size={24} />
             <span className="pl-2 pr-20 font-semibold">Favorites</span>

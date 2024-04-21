@@ -61,6 +61,18 @@ export async function favoriteImage(id: number) {
     .set({ favorite: !image.favorite })
     .where(eq(images.id, id));
   console.log("image.favorite", image.favorite);
+  revalidatePath("/favorites");
   revalidatePath("/");
-  redirect("/");
+}
+
+export async function getFavoriteImages() {
+  const user = auth();
+  if (!user.userId) throw new Error("Unauthorized");
+
+  const images = await db.query.images.findMany({
+    where: (model, { and, eq }) =>
+      and(eq(model.userId, user.userId), eq(model.favorite, true)),
+    orderBy: (model, { desc }) => desc(model.createdAt),
+  });
+  return images;
 }
