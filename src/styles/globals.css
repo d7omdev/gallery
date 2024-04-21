@@ -28,6 +28,26 @@ dialog {
   background: #999;
 }
 
+.cl-internal-11ttlho {
+  display: none;
+}
+
+.cl-userButtonPopoverMain {
+  background-color: black;
+  border: 1px solid #212121;
+  color: aliceblue;
+}
+.cl-userButtonPopoverMain button {
+  background-color: black;
+  border-top: 1px solid #212121;
+  color: aliceblue;
+}
+.cl-userButtonPopoverMain button:hover {
+  background-color: #282828;
+
+  color: aliceblue;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

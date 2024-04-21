@@ -9,6 +9,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "~/components/ui/tooltip";
+import { Button } from "~/components/ui/button";
 
 // inferred input off useUploadThing
 type Input = Parameters<typeof useUploadThing>;
@@ -97,7 +98,7 @@ export function UploadButton() {
     onUploadError(error) {
       posthog.capture("upload_error", { error });
       toast.dismiss("upload-begin");
-      toast.error(`Upload failed`, {
+      toast.error(`Upload failed, Max Image size 4MB`, {
         duration: 5000,
       });
     },
@@ -110,25 +111,19 @@ export function UploadButton() {
   });
 
   return (
-    <TooltipProvider>
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <div className="inline-flex items-center justify-center whitespace-nowrap rounded-full p-1 text-2xl font-medium ring-offset-background transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2  disabled:pointer-events-none disabled:opacity-50">
-            <label htmlFor="upload-button" className="cursor-pointer ">
-              <UploadSVG />
-            </label>
-            <input
-              id="upload-button"
-              type="file"
-              className="sr-only"
-              {...inputProps}
-            />
-          </div>
-        </TooltipTrigger>
-        <TooltipContent className="mt-2">
-          <p>Images up to 4MB, Max 40</p>
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
+    <Button>
+      <label htmlFor="upload-button" className="cursor-pointer p-2 font-medium">
+        <div className="flex items-center gap-2 ">
+          <UploadSVG />
+          <span className="hidden md:block">Upload</span>
+        </div>
+      </label>
+      <input
+        id="upload-button"
+        type="file"
+        className="sr-only"
+        {...inputProps}
+      />
+    </Button>
   );
 }

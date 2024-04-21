@@ -5,7 +5,7 @@ import { UploadButton } from "./upload-button";
 export default function TopNav() {
   return (
     <nav
-      className=" sticky top-0  z-10 flex w-full items-center justify-between border-b border-gray-800 bg-background/50 p-4  text-xl font-semibold"
+      className=" flex w-full items-center justify-between border-b border-gray-800 bg-background/50 p-4  text-xl font-semibold"
       style={{ backdropFilter: "blur(10px)" }}
     >
       <Link href="/">

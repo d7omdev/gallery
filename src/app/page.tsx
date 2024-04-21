@@ -1,8 +1,17 @@
 import { SignedIn, SignedOut } from "@clerk/nextjs";
-import { SideNav } from "./_components/sidenav";
-import { Images } from "./_components/images";
+import { Images } from "../components/images";
+import { UploadButton } from "../components/upload-button";
 
 export const dynamic = "force-dynamic";
+
+function Header() {
+  return (
+    <div className="flex items-center justify-between p-8">
+      <span className="text-4xl font-bold">Gallery</span>
+      <UploadButton />
+    </div>
+  );
+}
 
 export default function HomePage() {
   return (
@@ -13,13 +22,9 @@ export default function HomePage() {
         </div>
       </SignedOut>
       <SignedIn>
-        <div className="flex">
-          <aside className="w-2/12">
-            <SideNav />
-          </aside>
-          <div className="w-10/12">
-            <Images />
-          </div>
+        <div className="flex w-full flex-col">
+          <Header />
+          <Images />
         </div>
       </SignedIn>
     </main>

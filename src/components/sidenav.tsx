@@ -18,7 +18,7 @@ import { Sheet, SheetContent, SheetTrigger } from "~/components/ui/sheet";
 function Nav() {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <NavigationMenu className="flex list-none flex-col items-start gap-4">
+    <NavigationMenu className=" flex list-none flex-col items-start gap-4">
       <span className="pl-2 text-xl font-bold lg:block">Manage</span>
       <NavigationMenuItem>
         <Link href="/" legacyBehavior passHref>
@@ -41,7 +41,7 @@ function Nav() {
         </CollapsibleTrigger>
         <CollapsibleContent className="flex items-center">
           <NavigationMenuLink
-            className={`${navigationMenuTriggerStyle()}  mx-auto px-8 text-center`}
+            className={`${navigationMenuTriggerStyle()}  mx-auto w-5/6 text-center`}
           >
             Gallery
           </NavigationMenuLink>
@@ -72,15 +72,15 @@ function MobileNav() {
   );
 }
 
-export function SideNav() {
+export function SideNav(props: React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <>
-      <div className="hidden p-6 lg:block">
+    <div {...props}>
+      <div className="fixed hidden p-6 lg:block">
         <Nav />
       </div>
-      <div className="lg:hidden">
+      <div className=" sticky top-0 lg:hidden">
         <MobileNav />
       </div>
-    </>
+    </div>
   );
 }

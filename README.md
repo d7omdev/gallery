@@ -16,5 +16,8 @@
 - [x] Update upload button to be more user friendly
 - [x] ShadUI (toasts)
 - [x] Analytics (posthog)
-- [ ] Delete button (w/ server Actions)
+- [x] Delete button (w/ server Actions)
+- [x] Favorite button (w/ server Actions)
+- [ ] Search (w/ server Actions)
+- [ ] Albums
 - [ ] Rate limiting (upstash)
