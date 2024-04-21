@@ -31,11 +31,10 @@ function Image({ ...image }: ImageType) {
         className="absolute left-0 top-0 z-10"
         action={async () => {
           "use server";
-          console.log("image.id", image.id);
           await favoriteImage(image.id);
         }}
       >
-        <FavoriteButton favorite={image.favorite} />
+        <FavoriteButton favorite={image.favorite} imageId={image.id} />
       </form>
       <BlurImage {...image} />
     </div>
