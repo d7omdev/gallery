@@ -9,7 +9,9 @@ export default function TopNav() {
       style={{ backdropFilter: "blur(10px)" }}
     >
       <Link href="/">
-        <div>Gallery</div>
+        <div>
+          Gale<span className=" font-extrabold text-red-800">ME</span>
+        </div>
       </Link>
       <div className="flex flex-row items-center gap-4">
         <SignedOut>

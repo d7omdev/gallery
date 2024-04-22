@@ -60,7 +60,6 @@ export async function favoriteImage(id: number) {
     .update(images)
     .set({ favorite: !image.favorite })
     .where(eq(images.id, id));
-  console.log("image.favorite", image.favorite);
   revalidatePath("/favorites");
   revalidatePath("/");
 }

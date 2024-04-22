@@ -38,7 +38,7 @@ export default function RootLayout({
             <div className="flex h-screen flex-col">
               <TopNav />
               <main className=" flex ">
-                <SideNav className="w-1/5 " />
+                <SideNav className="w-1/12 md:w-1/5" />
 
                 {children}
               </main>
