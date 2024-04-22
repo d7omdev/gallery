@@ -19,7 +19,8 @@
 - [x] Delete button (w/ server Actions)
 - [x] Favorite button (w/ server Actions)
 - [x] Fix image grid layout
-- [ ] Share button functionality
+- [x] Share button functionality
+- [ ] Better way to handle image share link
 - [ ] Search (w/ server Actions)
 - [ ] Albums
 - [ ] Rate limiting (upstash)

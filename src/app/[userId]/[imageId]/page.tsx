@@ -34,12 +34,8 @@ export default async function SharedImage({
     <section className="flex h-full flex-col justify-center md:flex-row lg:flex-row">
       <img
         alt={image.name}
-        sizes="(max-width: 768px) 100vw, 33vw"
-        style={{
-          objectFit: "cover",
-        }}
         src={image.url}
-        className="h-auto object-contain md:w-2/3 lg:w-2/3"
+        className="h-auto object-contain md:w-2/3 lg:w-2/3 "
       />
 
       <div className="w-full gap-2 border-gray-700 bg-background/90 p-4 text-center md:h-auto  md:w-1/3 md:border-l lg:border-l">

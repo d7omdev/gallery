@@ -2,7 +2,12 @@ import "~/styles/globals.css";
 import "@uploadthing/react/styles.css";
 import { Inter } from "next/font/google";
 
-import { ClerkProvider } from "@clerk/nextjs";
+import {
+  ClerkProvider,
+  SignInButton,
+  SignedIn,
+  SignedOut,
+} from "@clerk/nextjs";
 import { CSPostHogProvider } from "~/app/_analytics/provider";
 import TopNav from "../components/topnav";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
@@ -24,10 +29,8 @@ export const metadata = {
 
 export default function RootLayout({
   children,
-  modal,
 }: {
   children: React.ReactNode;
-  modal: React.ReactNode;
 }) {
   return (
     <ClerkProvider>
@@ -38,12 +41,12 @@ export default function RootLayout({
             <div className="flex h-screen flex-col">
               <TopNav />
               <main className=" flex ">
-                <SideNav className="w-1/12 md:w-1/5" />
+                <SignedIn>
+                  <SideNav className="w-1/12 md:w-1/5" />
+                </SignedIn>
                 {children}
               </main>
             </div>
-            {modal}
-            <div id="modal-root" />
             <Toaster />
           </body>
         </html>

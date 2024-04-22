@@ -121,6 +121,8 @@ function MobileNav() {
 
 export function SideNav(props: React.HTMLAttributes<HTMLDivElement>) {
   return (
+
+    
     <div {...props}>
       <div className="sticky top-0 hidden p-6 lg:block">
         <Nav />
