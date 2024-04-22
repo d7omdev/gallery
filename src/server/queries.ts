@@ -75,3 +75,14 @@ export async function getFavoriteImages() {
   });
   return images;
 }
+
+export async function getImageByUserID(userId: string, imageId: string) {
+  const image = await db.query.images.findFirst({
+    where: (model, { and, eq }) =>
+      and(eq(model.userId, userId), eq(model.id, parseInt(imageId))),
+  });
+
+  if (!image) return null;
+
+  return image;
+}

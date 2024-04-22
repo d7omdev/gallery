@@ -11,7 +11,7 @@ function Header() {
   );
 }
 
-export default function HomePage() {
+export default function FavoritesPage() {
   return (
     <main className="flex w-full">
       <SignedOut>

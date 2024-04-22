@@ -11,8 +11,9 @@ import {
   DialogTrigger,
 } from "~/components/ui/dialog";
 import * as timeago from "timeago.js";
-import { Fullscreen } from "lucide-react";
+import { Fullscreen, Share } from "lucide-react";
 import DeleteButton from "./delete-button";
+import { ShareButton } from "./share-button";
 
 export type ImageType = {
   id: number;
@@ -67,7 +68,6 @@ function Image({ ...image }: ImageType & { favorited: number[] }) {
         </form>
         <BlurImage {...image} />
       </div>
-
       <DialogContent className="h-max object-fill">
         <DialogHeader>
           <DialogTitle className="pt-4">{image.name}</DialogTitle>
@@ -87,6 +87,7 @@ function Image({ ...image }: ImageType & { favorited: number[] }) {
               <DeleteButton />
             </form>
           </DialogClose>
+          <ShareButton {...image} />
         </div>
       </DialogContent>
     </Dialog>
