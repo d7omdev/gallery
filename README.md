@@ -17,9 +17,10 @@
 - [x] ShadUI (toasts)
 - [x] Analytics (posthog)
 - [x] Delete button (w/ server Actions)
+- [x] Favorite button (w/ server Actions)
 - [x] Rate limiting (upstash)
-- [ ] Make Gallery better
-- [ ] Fix the page layout for images of different resolutions
-- [ ] "Selecting" images on the gallery page
-- [ ] "infinite scroll"
-- [ ] Folders/albums
+- [x] Fix image grid layout
+- [x] Share button functionality
+- [x] Better way to handle image share link
+- [ ] Search (w/ server Actions)
+- [ ] Albums
