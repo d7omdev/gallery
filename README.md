@@ -20,7 +20,7 @@
 - [x] Favorite button (w/ server Actions)
 - [x] Fix image grid layout
 - [x] Share button functionality
-- [ ] Better way to handle image share link
+- [x] Better way to handle image share link
 - [ ] Search (w/ server Actions)
 - [ ] Albums
 - [ ] Rate limiting (upstash)
