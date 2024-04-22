@@ -18,6 +18,7 @@
 - [x] Analytics (posthog)
 - [x] Delete button (w/ server Actions)
 - [x] Favorite button (w/ server Actions)
+- [ ] Fix image grid layout
 - [ ] Search (w/ server Actions)
 - [ ] Albums
 - [ ] Rate limiting (upstash)
