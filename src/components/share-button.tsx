@@ -18,24 +18,6 @@ import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import { ImageType } from "./image-grid";
 
-// const socialMediaLinks = [
-//   {
-//     name: "WhatsApp",
-//     getMessageLink: (message) =>
-//       `whatsapp://send?text=${encodeURIComponent(message)}`,
-//   },
-//   {
-//     name: "Facebook Messenger",
-//     getMessageLink: (message) =>
-//       `fb-messenger://share/?link=&app_id=&display=popup&quote=${encodeURIComponent(message)}`,
-//   },
-//   {
-//     name: "Twitter",
-//     getMessageLink: (message) =>
-//       `https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}`,
-//   },
-// ];
-
 export function ShareButton(image: ImageType) {
   const handleDownload = async (
     url: string,
@@ -100,7 +82,7 @@ export function ShareButton(image: ImageType) {
               navigator.share({
                 title: "Check out this image",
                 text: "Check out this image",
-                url: shareUrl,
+                url: `/${image.userId}/${image.id}`,
               });
             }}
           >

@@ -7,9 +7,9 @@ const FavoriteButton = ({
   favorite,
   favorites,
 }: {
-  id: number;
+  id: string;
   favorite: boolean;
-  favorites: number[];
+  favorites: string[];
 }) => {
   const [isFavorite, setIsFavorite] = useState(favorite);
 

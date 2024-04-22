@@ -38,7 +38,7 @@ const DialogBlurImage = (image: ImageType) => {
       loading="eager"
       alt={image.name}
       className={cn(
-        "rounded-lg duration-700 ease-in-out group-hover:opacity-75",
+        "rounded-lg object-contain duration-700 ease-in-out group-hover:opacity-75",
         dialogIsLoading
           ? "scale-110 blur-2xl grayscale"
           : "scale-100 blur-0 grayscale-0",

@@ -18,7 +18,7 @@ export async function getMyImages() {
   return images;
 }
 
-export async function getImage(id: number) {
+export async function getImage(id: string) {
   const user = auth();
   if (!user.userId) throw new Error("Unauthorized");
 
@@ -33,19 +33,18 @@ export async function getImage(id: number) {
   return image;
 }
 
-export async function deleteImage(id: number) {
+export async function deleteImage(id: string) {
   const user = auth();
   if (!user.userId) throw new Error("Unauthorized");
 
   await db
     .delete(images)
     .where(and(eq(images.id, id), eq(images.userId, user.userId)));
-
   revalidatePath("/");
   redirect("/");
 }
 
-export async function favoriteImage(id: number) {
+export async function favoriteImage(id: string) {
   const user = auth();
   if (!user.userId) throw new Error("Unauthorized");
   const image = await db.query.images.findFirst({
@@ -79,7 +78,7 @@ export async function getFavoriteImages() {
 export async function getImageByUserID(userId: string, imageId: string) {
   const image = await db.query.images.findFirst({
     where: (model, { and, eq }) =>
-      and(eq(model.userId, userId), eq(model.id, parseInt(imageId))),
+      and(eq(model.userId, userId), eq(model.id, imageId)),
   });
 
   if (!image) return null;

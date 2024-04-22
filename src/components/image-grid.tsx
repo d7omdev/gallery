@@ -16,7 +16,7 @@ import DeleteButton from "./delete-button";
 import { ShareButton } from "./share-button";
 
 export type ImageType = {
-  id: number;
+  id: string;
   name: string;
   url: string;
   userId: string;
@@ -30,7 +30,7 @@ export default function Gallery({
   favorited,
 }: {
   images: ImageType[];
-  favorited?: number[];
+  favorited?: string[];
 }) {
   return (
     <div className=" max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-full lg:px-8">
@@ -43,7 +43,7 @@ export default function Gallery({
   );
 }
 
-function Image({ ...image }: ImageType & { favorited: number[] }) {
+function Image({ ...image }: ImageType & { favorited: string[] }) {
   const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
   const createdAt = new Date(image.createdAt).toISOString();
   const timeStamp = timeago.format(createdAt, userTimezone);
@@ -73,10 +73,10 @@ function Image({ ...image }: ImageType & { favorited: number[] }) {
           <DialogTitle className="pt-4">{image.name}</DialogTitle>
           <DialogDescription>{`Created ${timeStamp}`}</DialogDescription>
         </DialogHeader>
-        <div className="   flex  flex-col gap-4 overflow-hidden rounded-lg">
+        <div className="   aspect-h-1  aspect-w-1 flex flex-col gap-4 overflow-hidden rounded-lg ">
           <DialogBlurImage {...image} />
         </div>
-        <div className=" z-20 flex justify-between">
+        <div className=" flex justify-between">
           <DialogClose>
             <form
               action={async () => {

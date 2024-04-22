@@ -15,6 +15,18 @@ export default async function SharedImage({
     );
   }
 
+  if (
+    !/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/.test(
+      imageId,
+    )
+  ) {
+    return (
+      <div className="mx-auto py-20 text-2xl font-semibold">
+        The image you are looking for does not exist!
+      </div>
+    );
+  }
+
   const image = await getImageByUserID(userId, imageId);
 
   if (!image) {
