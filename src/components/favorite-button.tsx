@@ -29,7 +29,7 @@ const FavoriteButton = ({
       onClick={() => {
         toggleFavorite();
       }}
-      className="rounded-full p-1  transition-transform duration-300 ease-in-out hover:scale-110"
+      className="rounded-full p-1 transition-transform duration-300 ease-in-out hover:scale-110"
     >
       <Heart
         width={25}
