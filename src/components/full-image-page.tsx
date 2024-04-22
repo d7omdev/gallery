@@ -1,8 +1,8 @@
 import * as timeago from "timeago.js";
-
 import { clerkClient } from "@clerk/nextjs/server";
 import { deleteImage, getImage } from "~/server/queries";
 import { Button } from "~/components/ui/button";
+import Image from "next/image";
 
 export default async function FullPageImage(props: { id: number }) {
   const image = await getImage(props.id);
@@ -14,8 +14,13 @@ export default async function FullPageImage(props: { id: number }) {
 
   return (
     <section className="flex h-full flex-col justify-center md:flex-row lg:flex-row">
-      <img
+      <Image
         alt={image.name}
+        fill
+        sizes="(max-width: 768px) 100vw, 33vw"
+        style={{
+          objectFit: "cover",
+        }}
         src={image.url}
         className="h-auto object-contain md:w-2/3 lg:w-2/3"
       />

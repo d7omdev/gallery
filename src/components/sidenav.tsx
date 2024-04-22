@@ -1,5 +1,5 @@
 "use client";
-import { ChevronsUpDown, Folder, Heart, Images, Menu } from "lucide-react";
+import { Folder, Heart, Images, Menu } from "lucide-react";
 import Link from "next/link";
 import {
   NavigationMenu,
@@ -75,16 +75,14 @@ function MobileNav() {
         <NavigationMenu className=" flex list-none flex-col items-start gap-4">
           <span className="pl-2 text-xl font-bold lg:block">Manage</span>
           <NavigationMenuItem>
-            <SheetClose>
-              <Link href="/" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  <SheetClose className="flex">
-                    <Images size={24} />
-                    <span className="pl-2 pr-20 font-semibold">Gallery</span>
-                  </SheetClose>
-                </NavigationMenuLink>
-              </Link>
-            </SheetClose>
+            <Link href="/" legacyBehavior passHref>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                <SheetClose className="flex">
+                  <Images size={24} />
+                  <span className="pl-2 pr-20 font-semibold">Gallery</span>
+                </SheetClose>
+              </NavigationMenuLink>
+            </Link>
           </NavigationMenuItem>
           <Collapsible
             open={isOpen}

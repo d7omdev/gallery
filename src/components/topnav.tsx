@@ -1,6 +1,5 @@
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
-import { UploadButton } from "./upload-button";
 
 export default function TopNav() {
   return (
