@@ -44,7 +44,7 @@ export default function RootLayout({
               </main>
             </div>
             <Toaster />
-            <SpeedInsights />
+            {process.env.NODE_ENV === "development" ? "" : <SpeedInsights />}
           </body>
         </html>
       </CSPostHogProvider>

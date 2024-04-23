@@ -22,5 +22,6 @@
 - [x] Fix image grid layout
 - [x] Share button functionality
 - [x] Better way to handle image share link
-- [ ] Search (w/ server Actions)
 - [ ] Albums
+- [ ] Tags
+- [ ] Grid size selector (for mobile)

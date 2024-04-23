@@ -16,7 +16,7 @@ import {
 } from "~/components/ui/dialog";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
-import { ImageType } from "./image-grid";
+import { ImageType } from "./image";
 
 export function ShareButton(image: ImageType) {
   const handleDownload = async (
