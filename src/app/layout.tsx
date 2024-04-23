@@ -2,12 +2,7 @@ import "~/styles/globals.css";
 import "@uploadthing/react/styles.css";
 import { Inter } from "next/font/google";
 
-import {
-  ClerkProvider,
-  SignInButton,
-  SignedIn,
-  SignedOut,
-} from "@clerk/nextjs";
+import { ClerkProvider, SignedIn } from "@clerk/nextjs";
 import { CSPostHogProvider } from "~/app/_analytics/provider";
 import TopNav from "../components/topnav";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
@@ -15,6 +10,7 @@ import { extractRouterConfig } from "uploadthing/server";
 import { ourFileRouter } from "./api/uploadthing/core";
 import { Toaster } from "~/components/ui/sonner";
 import { SideNav } from "~/components/sidenav";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -48,6 +44,7 @@ export default function RootLayout({
               </main>
             </div>
             <Toaster />
+            <SpeedInsights />
           </body>
         </html>
       </CSPostHogProvider>
