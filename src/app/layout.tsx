@@ -38,7 +38,7 @@ export default function RootLayout({
               <TopNav />
               <main className=" flex ">
                 <SignedIn>
-                  <SideNav className="w-1/12 md:w-1/5" />
+                  <SideNav className="z-50 w-0 md:w-1/5" />
                 </SignedIn>
                 {children}
               </main>

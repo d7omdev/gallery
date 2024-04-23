@@ -49,24 +49,26 @@ function Image({ ...image }: ImageType & { favorited: string[] }) {
   const timeStamp = timeago.format(createdAt, userTimezone);
   return (
     <Dialog>
-      <div className="relative overflow-hidden rounded-lg">
-        <form
-          className="absolute top-0 z-10  flex w-full items-center justify-between bg-zinc-800/50"
-          action={async () => {
-            "use server";
-            await favoriteImage(image.id);
-          }}
-        >
-          <FavoriteButton
-            id={image.id}
-            favorite={!!image.favorite}
-            favorites={image.favorited}
-          />
-          <DialogTrigger className="p-1">
-            <Fullscreen />
-          </DialogTrigger>
-        </form>
+      <div className=" overflow-hidden rounded-lg shadow-white drop-shadow-md">
         <BlurImage {...image} />
+        <div className="flex  flex-col bg-zinc-800/50">
+          <form
+            className=" flex w-full items-center justify-between"
+            action={async () => {
+              "use server";
+              await favoriteImage(image.id);
+            }}
+          >
+            <FavoriteButton
+              id={image.id}
+              favorite={!!image.favorite}
+              favorites={image.favorited}
+            />
+            <DialogTrigger className="p-1">
+              <Fullscreen />
+            </DialogTrigger>
+          </form>
+        </div>
       </div>
       <DialogContent className="h-max object-fill">
         <DialogHeader>

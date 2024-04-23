@@ -24,21 +24,27 @@ function LoadingSpinnerSVG() {
 }
 
 export default function DeleteButton() {
+  const deleting = () => {
+    toast(
+      <div className="flex items-center gap-2 text-white">
+        <LoadingSpinnerSVG /> <span className=" text-lg">Deleting...</span>
+      </div>,
+      {
+        duration: 1000,
+      },
+    );
+  };
+
+  const confirm = () => {
+    toast("Are you sure?", {
+      action: {
+        label: "Yes, Delete!",
+        onClick: () => deleting(),
+      },
+    });
+  };
   return (
-    <Button
-      type="submit"
-      onClick={() =>
-        toast(
-          <div className="flex items-center gap-2 text-white">
-            <LoadingSpinnerSVG /> <span className=" text-lg">Deleting...</span>
-          </div>,
-          {
-            duration: 1000,
-          },
-        )
-      }
-      variant="destructive"
-    >
+    <Button type="submit" onClick={() => confirm} variant="destructive">
       Delete
     </Button>
   );

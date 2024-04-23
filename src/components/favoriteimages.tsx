@@ -6,7 +6,7 @@ export async function FavoriteImages() {
   const favorited = images.map((image) => image.id);
   if (images.length === 0) {
     return (
-      <div className="mx-auto py-20 text-2xl font-semibold">
+      <div className="mx-auto p-4 py-20 text-center text-2xl font-semibold">
         Favorite some images to see them here!
       </div>
     );

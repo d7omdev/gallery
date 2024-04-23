@@ -68,11 +68,11 @@ function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <Sheet>
-      <SheetTrigger className="p-1">
-        <Menu />
+      <SheetTrigger className="z-50  mt-2 pl-2">
+        <Menu className=" rounded-sm bg-black/50 backdrop-blur-sm " />
       </SheetTrigger>
-      <SheetContent>
-        <NavigationMenu className=" flex list-none flex-col items-start gap-4">
+      <SheetContent className="w-3/5">
+        <NavigationMenu className="  list-none flex-col items-start gap-4 md:flex">
           <span className="pl-2 text-xl font-bold lg:block">Manage</span>
           <NavigationMenuItem>
             <Link href="/" legacyBehavior passHref>
@@ -121,8 +121,6 @@ function MobileNav() {
 
 export function SideNav(props: React.HTMLAttributes<HTMLDivElement>) {
   return (
-
-    
     <div {...props}>
       <div className="sticky top-0 hidden p-6 lg:block">
         <Nav />
