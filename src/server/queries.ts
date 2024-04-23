@@ -6,6 +6,18 @@ import { images } from "./db/schema";
 import { and, eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { UTApi } from "uploadthing/server";
+
+export const utapi = new UTApi();
+
+const UTDelete = async (idS: string | string[]) => {
+  try {
+    await utapi.deleteFiles(idS);
+  } catch (error) {
+    console.log(error);
+    throw new Error("Failed to delete image");
+  }
+};
 
 export async function getMyImages() {
   const user = auth();
@@ -34,13 +46,17 @@ export async function getImage(id: string) {
   return image;
 }
 
-export async function deleteImage(id: string) {
+export async function deleteImage(id: string, url: string) {
   const user = auth();
+
   if (!user.userId) throw new Error("Unauthorized");
 
   await db
     .delete(images)
     .where(and(eq(images.id, id), eq(images.userId, user.userId)));
+
+  const UTid = url.split("/")[4];
+  await UTDelete(UTid!);
   revalidatePath("/");
   redirect("/");
 }

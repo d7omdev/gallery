@@ -81,7 +81,7 @@ function Image({ ...image }: ImageType & { favorited: string[] }) {
             <form
               action={async () => {
                 "use server";
-                await deleteImage(image.id);
+                await deleteImage(image.id, image.url);
               }}
             >
               <DeleteButton />
