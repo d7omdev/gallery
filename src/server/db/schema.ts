@@ -6,7 +6,6 @@ import {
   uuid,
   varchar,
 } from "drizzle-orm/pg-core";
-
 export const createTable = pgTableCreator((name) => `gallery_${name}`);
 
 export const images = createTable("image", {
@@ -19,4 +18,16 @@ export const images = createTable("image", {
     .notNull(),
   updatedAt: timestamp("updatedAt"),
   favorite: boolean("favorite").default(false),
+});
+
+export const albums = createTable("album", {
+  id: uuid("id").defaultRandom().primaryKey().notNull(),
+  name: varchar("name", { length: 256 }).notNull(),
+  imageIds: uuid("imageIds")
+    .references(() => images.id)
+    .array(),
+  createdAt: timestamp("created_at")
+    .default(sql`CURRENT_TIMESTAMP`)
+    .notNull(),
+  updatedAt: timestamp("updatedAt"),
 });
