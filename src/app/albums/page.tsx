@@ -1,9 +1,9 @@
 import { AlbumType } from "~/types";
-
 import Link from "next/link";
 import { getAlbums, getImage } from "~/server/queries";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import CreateAlbumButton from "~/components/create-album-button";
+import { BlurImage } from "~/components/blur-image";
 
 export const dynamic = "force-dynamic";
 
@@ -32,19 +32,14 @@ async function Album({ album }: { album: AlbumType }) {
               No Images yet in this album
             </div>
           ) : (
-            <img
-              alt=""
-              src={coverImage.url}
-              style={{ objectFit: "cover" }}
-              className={"duration-700 ease-in-out hover:opacity-75"}
-            />
+            <BlurImage {...coverImage} />
           )}
         </div>
         <div>
           <div className="flex w-full items-center justify-between px-2 py-1">
             <span className="w-4/5  break-all">{album.name} </span>
             <span className="text-sm text-gray-500">
-              {album.imageIds?.length}
+              {album.imageIds?.length || 0}
             </span>
           </div>
         </div>

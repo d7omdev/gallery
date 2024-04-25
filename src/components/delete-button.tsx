@@ -26,7 +26,7 @@ export default function DeleteButton({
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button variant="destructive" className="flex gap-2">
+        <Button variant="destructive" className="flex w-full gap-2">
           <Trash2 /> <span className="hidden md:block">Delete {itemName}</span>
         </Button>
       </AlertDialogTrigger>

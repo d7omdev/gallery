@@ -5,6 +5,7 @@ import DeleteButton from "~/components/delete-button";
 import Image from "~/components/image";
 import RemoveImageFromAlbum from "~/components/removeImageFromAlbum-button";
 import { Dialog } from "~/components/ui/dialog";
+import UpdateAlbumName from "~/components/updateAlbumName-button";
 import { deleteAlbum, getAlbum, getAlbumImages } from "~/server/queries";
 
 export const dynamic = "force-dynamic";
@@ -17,7 +18,7 @@ function Header({
   albumId: string;
 }) {
   return (
-    <div className="flex items-center justify-between p-8">
+    <div className="flex flex-col items-center justify-between p-8 md:flex-row">
       <div className="mr-2 flex gap-4 text-2xl font-bold md:text-4xl">
         <Link
           href={"/albums"}
@@ -30,6 +31,7 @@ function Header({
       </div>
       <Dialog>
         <form
+          className="flex  gap-2 p-2 "
           id="albumDeleteForm"
           action={async () => {
             "use server";
@@ -37,6 +39,7 @@ function Header({
             redirect("/albums");
           }}
         >
+          <UpdateAlbumName albumId={albumId} currentName={albumName} />
           <DeleteButton itemName="album" formId="albumDeleteForm" />
         </form>
       </Dialog>

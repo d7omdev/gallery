@@ -13,10 +13,11 @@ const BlurImage = (image: ImageType) => {
         alt=""
         src={image.url}
         fill
+        sizes="(min-width: 1280px) 1280px, (min-width: 1024px) 1024px, (min-width: 768px) 768px, 100vw"
         style={{ objectFit: "cover" }}
         className={cn(
-          "duration-700 ease-in-out group-hover:opacity-75",
-          isLoading ? "scale-110 blur-2xl " : "scale-100 blur-0 ",
+          "rounded-sm duration-700 ease-in-out group-hover:opacity-90",
+          isLoading ? "scale-110 blur-xl " : "scale-100 blur-0 ",
         )}
         onLoad={() => setIsLoading(false)}
       />
@@ -28,14 +29,12 @@ const DialogBlurImage = (image: ImageType) => {
   const [dialogIsLoading, setDialogIsLoading] = useState(true);
 
   return (
-    <Image
+    <img
       src={image.url}
       loading="eager"
-      fill
       style={{ objectFit: "contain" }}
       alt={image.name}
       className={cn(
-        " object-contain duration-700 ease-in-out group-hover:opacity-75",
         dialogIsLoading ? "scale-110 blur-2xl " : "scale-100 blur-0  ",
       )}
       onLoad={() => setDialogIsLoading(false)}

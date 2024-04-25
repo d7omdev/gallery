@@ -142,18 +142,15 @@ export async function createAlbum(name: string) {
   return album;
 }
 
-export async function updateAlbumName(oldName: string, newName: string) {
+export async function updateAlbumName(albumId: string, newName: string) {
   const album = await db.query.albums.findFirst({
-    where: (model, { eq }) => eq(model.name, oldName),
+    where: (model, { eq }) => eq(model.id, albumId),
   });
 
   if (!album) throw new Error("Album not found");
 
-  await db
-    .update(albums)
-    .set({ name: newName })
-    .where(eq(albums.name, oldName));
-  revalidatePath("/albums");
+  await db.update(albums).set({ name: newName }).where(eq(albums.id, albumId));
+  revalidatePath(`/albums/${albumId}`);
   return album;
 }
 
@@ -198,6 +195,7 @@ export async function addImageToAlbum(imageId: string, albumId: string) {
     .set({ imageIds: [...(album.imageIds ?? []), imageId] })
     .where(eq(albums.id, albumId));
   revalidatePath(`/albums`);
+  revalidatePath(`/albums/${albumId}`);
   return album;
 }
 

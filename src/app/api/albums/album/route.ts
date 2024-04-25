@@ -31,8 +31,8 @@ export async function POST(request: Request) {
 
 export async function PUT(request: Request) {
   try {
-    const { oldName, newName } = await request.json();
-    const album = await updateAlbumName(oldName, newName);
+    const { albumId, newName } = await request.json();
+    const album = await updateAlbumName(albumId, newName);
     let body = JSON.stringify(album);
     return new Response(body, { status: 200 });
   } catch (error) {
