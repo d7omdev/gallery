@@ -15,6 +15,7 @@ import DeleteButton from "./delete-button";
 import { ShareButton } from "./share-button";
 import { ImageType } from "~/types";
 import AddToButton from "./addto-button";
+import UpdateImageName from "./updateImageName-button";
 
 export default function Image({
   actions,
@@ -52,7 +53,10 @@ export default function Image({
         </div>
         <DialogContent className="h-max">
           <DialogHeader>
-            <DialogTitle className="pt-4">{image.name}</DialogTitle>
+            <DialogTitle className="flex pt-4">
+              {image.name}
+              <UpdateImageName imageId={image.id} currentName={image.name} />
+            </DialogTitle>
             <DialogDescription>{`Created ${timeStamp}`}</DialogDescription>
           </DialogHeader>
           <div className="flex h-full min-h-10 justify-center rounded-sm">

@@ -46,6 +46,16 @@ export async function getImage(id: string) {
   return image;
 }
 
+export async function updateImageName(id: string, name: string) {
+  const user = auth();
+
+  if (!user.userId) throw new Error("Unauthorized");
+
+  await db.update(images).set({ name: name }).where(eq(images.id, id));
+  revalidatePath("/");
+  return "Image name updated successfully";
+}
+
 export async function deleteImage(id: string, url: string) {
   const user = auth();
 
