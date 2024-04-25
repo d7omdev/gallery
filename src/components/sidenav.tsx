@@ -49,10 +49,10 @@ function Nav() {
 function MobileNav() {
   return (
     <Sheet>
-      <SheetTrigger className="z-50  mt-2 pl-2">
+      <SheetTrigger className="z-50 mt-2 pl-2 ">
         <Menu className=" rounded-sm bg-black/50 backdrop-blur-sm " />
       </SheetTrigger>
-      <SheetContent className="w-3/5">
+      <SheetContent className="w-2/5 overflow-hidden">
         <NavigationMenu className="  list-none flex-col items-start gap-4 md:flex">
           <span className="pl-2 text-xl font-bold lg:block">Manage</span>
           <NavigationMenuItem>
