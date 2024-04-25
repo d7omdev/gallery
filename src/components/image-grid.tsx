@@ -1,5 +1,5 @@
 import Image from "./image";
-import { ImageType } from "./image";
+import { ImageType } from "~/types";
 
 export default function Gallery({
   images,

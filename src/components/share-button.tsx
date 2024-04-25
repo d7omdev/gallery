@@ -16,7 +16,7 @@ import {
 } from "~/components/ui/dialog";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
-import { ImageType } from "./image";
+import { ImageType } from "~/types";
 
 export function ShareButton(image: ImageType) {
   const handleDownload = async (
@@ -40,7 +40,7 @@ export function ShareButton(image: ImageType) {
     }
   };
 
-  const shareUrl = `${window.location.hostname}/${image.userId}/${image.id}`;
+  const shareUrl = `${window.location.hostname}/share/${image.userId}/${image.id}`;
 
   return (
     <Dialog>

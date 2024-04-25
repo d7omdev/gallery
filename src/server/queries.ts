@@ -2,7 +2,7 @@ import "server-only";
 import { auth } from "@clerk/nextjs/server";
 import { db } from "~/server/db";
 import "server-only";
-import { images } from "./db/schema";
+import { images, albums } from "./db/schema";
 import { and, eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
@@ -101,4 +101,90 @@ export async function getImageByUserID(userId: string, imageId: string) {
   if (!image) return null;
 
   return image;
+}
+
+export async function createAlbum(name: string) {
+  const album = await db.query.albums.findFirst({
+    where: (model, { eq }) => eq(model.name, name),
+  });
+
+  if (album) throw new Error("Album already exists");
+
+  await db.insert(albums).values({ name });
+  revalidatePath("/albums");
+  return album;
+}
+
+export async function updateAlbumName(oldName: string, newName: string) {
+  const album = await db.query.albums.findFirst({
+    where: (model, { eq }) => eq(model.name, oldName),
+  });
+
+  if (!album) throw new Error("Album not found");
+
+  await db
+    .update(albums)
+    .set({ name: newName })
+    .where(eq(albums.name, oldName));
+  revalidatePath("/albums");
+  return album;
+}
+
+export async function deleteAlbum(name: string) {
+  const album = await db.query.albums.findFirst({
+    where: (model, { eq }) => eq(model.name, name),
+  });
+
+  if (!album) throw new Error("Album not found");
+
+  await db.delete(albums).where(eq(albums.name, name));
+  revalidatePath("/albums");
+  return album;
+}
+
+export async function getAlbums() {
+  const albums = await db.query.albums.findMany();
+
+  if (!albums) throw new Error("No albums found");
+  return albums;
+}
+
+export async function getAlbum(name: string) {
+  const album = await db.query.albums.findFirst({
+    where: (model, { eq }) => eq(model.name, name),
+  });
+
+  if (!album) throw new Error("Album not found");
+
+  return album;
+}
+
+export async function addImageToAlbum(imageId: string, albumId: string) {
+  const album = await db.query.albums.findFirst({
+    where: (model, { eq }) => eq(model.id, albumId),
+  });
+
+  if (!album) throw new Error("Album not found");
+
+  await db
+    .update(albums)
+    .set({ imageIds: [...(album.imageIds ?? []), imageId] })
+    .where(eq(albums.id, albumId));
+  return album;
+}
+
+export async function deleteImageFromAlbum(imageId: string, albumId: string) {
+  const album = await db.query.albums.findFirst({
+    where: (model, { eq }) => eq(model.id, albumId),
+  });
+
+  if (!album) throw new Error("Album not found");
+
+  await db
+    .update(albums)
+    .set({
+      imageIds: (album.imageIds ?? []).filter((id) => id !== imageId),
+    })
+    .where(eq(albums.name, albumId));
+  return album;
 }

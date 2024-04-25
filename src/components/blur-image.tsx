@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { cn } from "~/lib/utils";
-import { type ImageType } from "./image";
+import { type ImageType } from "~/types";
 
 const BlurImage = (image: ImageType) => {
   const [isLoading, setIsLoading] = useState(true);

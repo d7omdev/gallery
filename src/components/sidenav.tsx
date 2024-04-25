@@ -8,12 +8,6 @@ import {
   navigationMenuTriggerStyle,
 } from "~/components/ui/navigation-menu";
 import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "~/components/ui/collapsible";
-import { useState } from "react";
-import {
   Sheet,
   SheetContent,
   SheetTrigger,
@@ -21,7 +15,6 @@ import {
 } from "~/components/ui/sheet";
 
 function Nav() {
-  const [isOpen, setIsOpen] = useState(false);
   return (
     <NavigationMenu className=" flex list-none flex-col items-start gap-4">
       <span className="pl-2 text-xl font-bold lg:block">Manage</span>
@@ -33,25 +26,14 @@ function Nav() {
           </NavigationMenuLink>
         </Link>
       </NavigationMenuItem>
-      <Collapsible
-        open={isOpen}
-        onOpenChange={setIsOpen}
-        className="space-y-2 "
-      >
-        <CollapsibleTrigger asChild className="cursor-pointer">
+      <NavigationMenuItem>
+        <Link href="/albums" legacyBehavior passHref>
           <NavigationMenuLink className={navigationMenuTriggerStyle()}>
             <Folder size={24} />
             <span className="pl-2 pr-20 font-semibold">Albums</span>
           </NavigationMenuLink>
-        </CollapsibleTrigger>
-        <CollapsibleContent className="flex items-center">
-          <NavigationMenuLink
-            className={`${navigationMenuTriggerStyle()}  mx-auto w-5/6 text-center`}
-          >
-            Gallery
-          </NavigationMenuLink>
-        </CollapsibleContent>
-      </Collapsible>
+        </Link>
+      </NavigationMenuItem>
       <NavigationMenuItem>
         <Link href="/favorites" legacyBehavior passHref>
           <NavigationMenuLink className={navigationMenuTriggerStyle()}>
@@ -65,7 +47,6 @@ function Nav() {
 }
 
 function MobileNav() {
-  const [isOpen, setIsOpen] = useState(false);
   return (
     <Sheet>
       <SheetTrigger className="z-50  mt-2 pl-2">
@@ -84,25 +65,16 @@ function MobileNav() {
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
-          <Collapsible
-            open={isOpen}
-            onOpenChange={setIsOpen}
-            className="space-y-2 "
-          >
-            <CollapsibleTrigger asChild className="cursor-pointer">
+          <NavigationMenuItem>
+            <Link href="/albums" legacyBehavior passHref>
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                <Folder size={24} />
-                <span className="pl-2 pr-20 font-semibold">Albums</span>
+                <SheetClose className="flex">
+                  <Folder size={24} />
+                  <span className="pl-2 pr-20 font-semibold">Albums</span>
+                </SheetClose>
               </NavigationMenuLink>
-            </CollapsibleTrigger>
-            <CollapsibleContent className="flex items-center">
-              <NavigationMenuLink
-                className={`${navigationMenuTriggerStyle()}  mx-auto w-5/6 text-center`}
-              >
-                album
-              </NavigationMenuLink>
-            </CollapsibleContent>
-          </Collapsible>
+            </Link>
+          </NavigationMenuItem>
           <NavigationMenuItem>
             <Link href="/favorites" legacyBehavior passHref>
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>

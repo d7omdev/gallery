@@ -10,7 +10,7 @@ export default async function SharedImage({
   if (!userId || !imageId) {
     return (
       <div className="mx-auto py-20 text-2xl font-semibold">
-        The image you are looking for does not exist!
+        The page you are looking for does not exist
       </div>
     );
   }
@@ -22,7 +22,7 @@ export default async function SharedImage({
   ) {
     return (
       <div className="mx-auto py-20 text-2xl font-semibold">
-        The image you are looking for does not exist!
+        The page you are looking for does not exist
       </div>
     );
   }
@@ -32,7 +32,7 @@ export default async function SharedImage({
   if (!image) {
     return (
       <div className="mx-auto py-20 text-2xl font-semibold">
-        The image you are looking for does not exist!
+        The page you are looking for does not exist
       </div>
     );
   }
@@ -51,7 +51,7 @@ export default async function SharedImage({
       />
 
       <div className="w-full gap-2 border-gray-700 bg-background/90 p-4 text-center md:h-auto  md:w-1/3 md:border-l lg:border-l">
-        <h2 className="mt-6 break-words border-b border-gray-700 py-3 text-xl uppercase sm:text-2xl lg:text-6xl">
+        <h2 className="mt-6 break-words border-b border-gray-700 py-3 text-xl uppercase sm:text-2xl lg:text-4xl">
           {image.name}
         </h2>
         <div className="flex flex-row justify-between pt-4">

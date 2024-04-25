@@ -13,16 +13,8 @@ import * as timeago from "timeago.js";
 import { Fullscreen } from "lucide-react";
 import DeleteButton from "./delete-button";
 import { ShareButton } from "./share-button";
-
-export type ImageType = {
-  id: string;
-  name: string;
-  url: string;
-  userId: string;
-  createdAt: Date;
-  updatedAt: Date | null;
-  favorite: boolean | null;
-};
+import { ImageType } from "~/types";
+import AddToButton from "./addto-button";
 
 export default function Image({
   ...image
@@ -33,7 +25,7 @@ export default function Image({
   return (
     <>
       <Dialog>
-        <div className=" overflow-hidden rounded-lg border shadow-white drop-shadow-md">
+        <div className="group overflow-hidden rounded-lg border shadow-white drop-shadow-md">
           <BlurImage {...image} />
           <div className="flex  flex-col bg-zinc-800/50">
             <form
@@ -72,7 +64,10 @@ export default function Image({
             >
               <DeleteButton />
             </form>
-            <ShareButton {...image} />
+            <div className=" flex gap-2">
+              <AddToButton imageId={image.id} />
+              <ShareButton {...image} />
+            </div>
           </div>
         </DialogContent>
       </Dialog>
