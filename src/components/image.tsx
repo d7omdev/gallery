@@ -56,13 +56,13 @@ export default function Image({
           </div>
           <div className=" flex justify-between">
             <form
-              id="deleteForm"
+              id="imageDeleteForm"
               action={async () => {
                 "use server";
                 await deleteImage(image.id, image.url);
               }}
             >
-              <DeleteButton />
+              <DeleteButton itemName="image" formId="imageDeleteForm" />
             </form>
             <div className=" flex gap-2">
               <AddToButton imageId={image.id} />

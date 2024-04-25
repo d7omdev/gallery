@@ -14,19 +14,28 @@ import {
 import { DialogClose } from "./ui/dialog";
 import { Button } from "~/components/ui/button";
 import { LoadingSpinnerSVG } from "./LoadingSpinner";
+import { Trash2 } from "lucide-react";
 
-export default function DeleteButton() {
+export default function DeleteButton({
+  itemName,
+  formId,
+}: {
+  itemName: string;
+  formId: string;
+}) {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button variant="destructive">Delete</Button>
+        <Button variant="destructive" className="flex gap-2">
+          <Trash2 /> <span className="hidden md:block">Delete {itemName}</span>
+        </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete the
-            image!
+            This action cannot be undone. This will permanently delete the{" "}
+            {itemName}.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
@@ -45,7 +54,7 @@ export default function DeleteButton() {
                   id: "upload-begin",
                 },
               );
-              const deleteForm = document.getElementById("deleteForm");
+              const deleteForm = document.getElementById(formId);
               if (deleteForm instanceof HTMLFormElement) {
                 deleteForm.requestSubmit();
               }

@@ -39,7 +39,7 @@ export async function getImage(id: string) {
     where: (model, { eq }) => eq(model.id, id),
   });
 
-  if (!image) throw new Error("Image Not found");
+  if (!image) throw new Error("Image not found");
 
   if (image.userId !== user.userId) throw new Error("Unauthorized");
 
@@ -54,6 +54,19 @@ export async function deleteImage(id: string, url: string) {
   await db
     .delete(images)
     .where(and(eq(images.id, id), eq(images.userId, user.userId)));
+
+  await db.query.albums.findMany().then(async (Albums) => {
+    for (const album of Albums) {
+      if (album.imageIds?.includes(id)) {
+        await db
+          .update(albums)
+          .set({
+            imageIds: album.imageIds?.filter((imageId) => imageId !== id),
+          })
+          .where(eq(albums.id, album.id));
+      }
+    }
+  });
 
   const UTid = url.split("/")[4];
   await UTDelete(UTid!);
@@ -78,6 +91,20 @@ export async function favoriteImage(id: string) {
     .where(eq(images.id, id));
   revalidatePath("/favorites");
   revalidatePath("/");
+}
+
+export async function getAlbumImages(imagesIds: string[] | null) {
+  const user = auth();
+
+  if (!user.userId) throw new Error("Unauthorized");
+
+  if (imagesIds === null) return;
+  const images = await db.query.images.findMany({
+    where: (model, { inArray: $inArray }) => $inArray(model.id, imagesIds),
+    orderBy: (model, { desc }) => desc(model.createdAt),
+  });
+
+  return images;
 }
 
 export async function getFavoriteImages() {
@@ -112,6 +139,7 @@ export async function createAlbum(name: string) {
 
   await db.insert(albums).values({ name });
   revalidatePath("/albums");
+
   return album;
 }
 
@@ -130,16 +158,16 @@ export async function updateAlbumName(oldName: string, newName: string) {
   return album;
 }
 
-export async function deleteAlbum(name: string) {
-  const album = await db.query.albums.findFirst({
-    where: (model, { eq }) => eq(model.name, name),
-  });
-
-  if (!album) throw new Error("Album not found");
-
-  await db.delete(albums).where(eq(albums.name, name));
+export async function deleteAlbum(albumId: string) {
+  try {
+    await db.delete(albums).where(eq(albums.id, albumId));
+    revalidatePath("/albums");
+  } catch (error) {
+    console.log(error);
+    throw new Error("Failed to delete album");
+  }
   revalidatePath("/albums");
-  return album;
+  return "Album deleted successfully";
 }
 
 export async function getAlbums() {
@@ -149,9 +177,9 @@ export async function getAlbums() {
   return albums;
 }
 
-export async function getAlbum(name: string) {
+export async function getAlbum(albumId: string) {
   const album = await db.query.albums.findFirst({
-    where: (model, { eq }) => eq(model.name, name),
+    where: (model, { eq }) => eq(model.id, albumId),
   });
 
   if (!album) throw new Error("Album not found");
@@ -170,6 +198,7 @@ export async function addImageToAlbum(imageId: string, albumId: string) {
     .update(albums)
     .set({ imageIds: [...(album.imageIds ?? []), imageId] })
     .where(eq(albums.id, albumId));
+  revalidatePath(`/albums`);
   return album;
 }
 

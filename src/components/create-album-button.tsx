@@ -15,13 +15,17 @@ import {
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Plus } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const CreateAlbumButton = () => {
+  const router = useRouter();
   const [albumName, setAlbumName] = useState("");
   const createAlbumHandler = async (name: string) => {
     if (name.length < 2) {
-      console.log("Album name must be at least 2 characters long");
       return toast.error("Album name must be at least 2 characters long");
+    }
+    if (albumName.length > 20) {
+      return toast.error("Album name must be at most 20 characters long");
     }
 
     try {
@@ -29,6 +33,7 @@ const CreateAlbumButton = () => {
         name,
       });
       toast.success("Album created successfully");
+      router.push("/albums");
     } catch (error) {
       console.error("Error creating album", error);
     }
@@ -36,8 +41,8 @@ const CreateAlbumButton = () => {
 
   return (
     <Dialog>
-      <DialogTrigger>
-        <Button className="flex gap-1">
+      <DialogTrigger asChild>
+        <Button className="flex gap-1 bg-primary text-primary-foreground hover:bg-primary/90 ">
           <span>Create album</span>
           <Plus />
         </Button>

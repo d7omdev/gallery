@@ -5,6 +5,8 @@ import { getAlbums, getImage } from "~/server/queries";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import CreateAlbumButton from "~/components/create-album-button";
 
+export const dynamic = "force-dynamic";
+
 function Header() {
   return (
     <div className="flex items-center justify-between p-8">
@@ -15,7 +17,7 @@ function Header() {
 }
 
 async function Album({ album }: { album: AlbumType }) {
-  const coverImageId = album.imageIds?.[0];
+  const coverImageId = album.imageIds?.[album.imageIds.length - 1];
   let coverImage;
   if (coverImageId) {
     coverImage = await getImage(coverImageId as string);
@@ -39,8 +41,8 @@ async function Album({ album }: { album: AlbumType }) {
           )}
         </div>
         <div>
-          <div className="flex items-center justify-between px-2 ">
-            <span className="text-lg">{album.name} </span>
+          <div className="flex w-full items-center justify-between px-2 py-1">
+            <span className="w-4/5  break-all">{album.name} </span>
             <span className="text-sm text-gray-500">
               {album.imageIds?.length}
             </span>
@@ -65,13 +67,17 @@ export default async function Albums() {
         <div className="flex w-full flex-col">
           <Header />
           <div className=" max-w-2xl px-1 py-6 sm:px-6 lg:max-w-full lg:px-8">
-            <div className="grid grid-cols-2 gap-x-2 gap-y-2 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 xl:gap-x-8 xl:gap-y-8">
-              {albums.map((album) => (
-                <Link key={album.id} href={`/albums/${album.id}`}>
-                  <Album album={album} />
-                </Link>
-              ))}
-            </div>
+            {albums.length === 0 ? (
+              <div className="text-center text-xl">No albums found.</div>
+            ) : (
+              <div className="grid grid-cols-2 gap-x-2 gap-y-2 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 xl:gap-x-8 xl:gap-y-8">
+                {albums.map((album) => (
+                  <Link key={album.id} href={`/albums/${album.id}`}>
+                    <Album album={album} />
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </SignedIn>

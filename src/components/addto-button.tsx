@@ -29,6 +29,10 @@ export default function AddToButton({ imageId }: { imageId: string }) {
   }, []);
 
   const CheckHandler = (albumId: string) => {
+    const albumImages = albums.find((album) => album.id === albumId)?.imageIds;
+    if (albumImages?.includes(imageId)) {
+      return toast.error("Image already in album");
+    }
     try {
       axios.post("/api/albums/album/image", {
         albumId: albumId,
