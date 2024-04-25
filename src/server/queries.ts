@@ -98,7 +98,7 @@ export async function getAlbumImages(imagesIds: string[] | null) {
 
   if (!user.userId) throw new Error("Unauthorized");
 
-  if (imagesIds === null) return;
+  if (imagesIds === null || imagesIds.length === 0) return;
   const images = await db.query.images.findMany({
     where: (model, { inArray: $inArray }) => $inArray(model.id, imagesIds),
     orderBy: (model, { desc }) => desc(model.createdAt),
@@ -139,7 +139,6 @@ export async function createAlbum(name: string) {
 
   await db.insert(albums).values({ name });
   revalidatePath("/albums");
-
   return album;
 }
 
@@ -202,7 +201,7 @@ export async function addImageToAlbum(imageId: string, albumId: string) {
   return album;
 }
 
-export async function deleteImageFromAlbum(imageId: string, albumId: string) {
+export async function removeImageFromAlbum(imageId: string, albumId: string) {
   const album = await db.query.albums.findFirst({
     where: (model, { eq }) => eq(model.id, albumId),
   });
@@ -214,6 +213,7 @@ export async function deleteImageFromAlbum(imageId: string, albumId: string) {
     .set({
       imageIds: (album.imageIds ?? []).filter((id) => id !== imageId),
     })
-    .where(eq(albums.name, albumId));
+    .where(eq(albums.id, albumId));
+  revalidatePath(`/albums`);
   return album;
 }

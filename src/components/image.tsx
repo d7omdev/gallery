@@ -17,8 +17,9 @@ import { ImageType } from "~/types";
 import AddToButton from "./addto-button";
 
 export default function Image({
+  actions,
   ...image
-}: ImageType & { favorited: string[] }) {
+}: ImageType & { favorited?: string[]; actions?: React.ReactNode }) {
   const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
   const createdAt = new Date(image.createdAt).toISOString();
   const timeStamp = timeago.format(createdAt, userTimezone);
@@ -38,11 +39,14 @@ export default function Image({
               <FavoriteButton
                 id={image.id}
                 favorite={!!image.favorite}
-                favorites={image.favorited}
+                favorites={image.favorited ?? []}
               />
-              <DialogTrigger className="p-1">
-                <Fullscreen />
-              </DialogTrigger>
+              <div className="flex gap-2 p-1">
+                {actions}
+                <DialogTrigger>
+                  <Fullscreen />
+                </DialogTrigger>
+              </div>
             </form>
           </div>
         </div>
