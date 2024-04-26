@@ -1,6 +1,6 @@
 import { SignedIn, SignedOut } from "@clerk/nextjs";
-import Link from "next/link";
 import { redirect } from "next/navigation";
+import Link from "next/link";
 import DeleteButton from "~/components/delete-button";
 import Image from "~/components/image";
 import RemoveImageFromAlbum from "~/components/removeImageFromAlbum-button";
@@ -18,16 +18,16 @@ function Header({
   albumId: string;
 }) {
   return (
-    <div className="flex flex-col items-center justify-between p-8 md:flex-row">
-      <div className="mr-2 flex gap-4 text-2xl font-bold md:text-4xl">
+    <div className="flex flex-col items-center justify-between p-6 md:flex-row">
+      <div className="flex gap-4 text-2xl font-bold md:text-4xl">
         <Link
           href={"/albums"}
-          className="transition-colors ease-in-out hover:text-white/50"
+          className="ml-2 transition-colors ease-in-out hover:text-white/50"
         >
           Albums
         </Link>
         <span>/</span>
-        <span className="break-all">{albumName}</span>
+        <span className="break-words">{albumName}</span>
       </div>
       <Dialog>
         <form

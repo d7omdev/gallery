@@ -15,10 +15,8 @@ import {
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Plus } from "lucide-react";
-import { useRouter } from "next/navigation";
 
 const CreateAlbumButton = () => {
-  const router = useRouter();
   const [albumName, setAlbumName] = useState("");
   const createAlbumHandler = async (name: string) => {
     if (name.length < 2) {
@@ -33,7 +31,6 @@ const CreateAlbumButton = () => {
         name,
       });
       toast.success("Album created successfully");
-      router.push("/albums");
     } catch (error) {
       console.error("Error creating album", error);
     }

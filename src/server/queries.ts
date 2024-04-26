@@ -149,7 +149,7 @@ export async function createAlbum(name: string) {
 
   await db.insert(albums).values({ name });
   revalidatePath("/albums");
-  return album;
+  return "Album created successfully";
 }
 
 export async function updateAlbumName(albumId: string, newName: string) {
