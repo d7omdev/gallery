@@ -82,7 +82,7 @@ export function ShareButton(image: ImageType) {
               navigator.share({
                 title: "Check out this image",
                 text: "Check out this image",
-                url: `/${image.userId}/${image.id}`,
+                url: `/share/${image.userId}/${image.id}`,
               });
             }}
           >

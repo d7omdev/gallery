@@ -51,7 +51,7 @@ export default function Image({
             </form>
           </div>
         </div>
-        <DialogContent className="h-max">
+        <DialogContent className="h-max min-h-20">
           <DialogHeader>
             <DialogTitle className="flex pt-4">
               {image.name}
@@ -59,7 +59,7 @@ export default function Image({
             </DialogTitle>
             <DialogDescription>{`Created ${timeStamp}`}</DialogDescription>
           </DialogHeader>
-          <div className="flex h-full min-h-10 justify-center rounded-sm">
+          <div className="flex h-full min-h-10 justify-center overflow-hidden rounded-sm">
             <DialogBlurImage {...image} />
           </div>
           <div className="flex justify-between">
