@@ -1,6 +1,6 @@
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import Link from "next/link";
-import { redirect } from "next/navigation";
+import {} from "next/navigation";
 import DeleteButton from "~/components/delete-button";
 import Image from "~/components/image";
 import RemoveImageFromAlbum from "~/components/removeImageFromAlbum-button";
@@ -36,7 +36,6 @@ function Header({
           action={async () => {
             "use server";
             await deleteAlbum(albumId);
-            redirect("/albums");
           }}
         >
           <UpdateAlbumName albumId={albumId} currentName={albumName} />

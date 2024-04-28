@@ -51,7 +51,10 @@ export async function updateImageName(id: string, name: string) {
 
   if (!user.userId) throw new Error("Unauthorized");
 
-  await db.update(images).set({ name: name }).where(eq(images.id, id));
+  await db
+    .update(images)
+    .set({ name: name, updatedAt: new Date() })
+    .where(eq(images.id, id));
   revalidatePath("/");
   return "Image name updated successfully";
 }
@@ -159,7 +162,10 @@ export async function updateAlbumName(albumId: string, newName: string) {
 
   if (!album) throw new Error("Album not found");
 
-  await db.update(albums).set({ name: newName }).where(eq(albums.id, albumId));
+  await db
+    .update(albums)
+    .set({ name: newName, updatedAt: new Date() })
+    .where(eq(albums.id, albumId));
   revalidatePath(`/albums/${albumId}`);
   return album;
 }
@@ -173,13 +179,17 @@ export async function deleteAlbum(albumId: string) {
     throw new Error("Failed to delete album");
   }
   revalidatePath("/albums");
-  return "Album deleted successfully";
+  redirect("/albums");
 }
 
 export async function getAlbums() {
-  const albums = await db.query.albums.findMany();
+  const albums = await db.query.albums.findMany({
+    orderBy: (model, { desc }) => desc(model.createdAt),
+  });
 
   if (!albums) throw new Error("No albums found");
+
+  revalidatePath("/albums");
   return albums;
 }
 
@@ -202,7 +212,10 @@ export async function addImageToAlbum(imageId: string, albumId: string) {
 
   await db
     .update(albums)
-    .set({ imageIds: [...(album.imageIds ?? []), imageId] })
+    .set({
+      imageIds: [...(album.imageIds ?? []), imageId],
+      updatedAt: new Date(),
+    })
     .where(eq(albums.id, albumId));
   revalidatePath(`/albums`);
   revalidatePath(`/albums/${albumId}`);
@@ -220,6 +233,7 @@ export async function removeImageFromAlbum(imageId: string, albumId: string) {
     .update(albums)
     .set({
       imageIds: (album.imageIds ?? []).filter((id) => id !== imageId),
+      updatedAt: new Date(),
     })
     .where(eq(albums.id, albumId));
   revalidatePath(`/albums`);

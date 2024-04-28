@@ -7,6 +7,15 @@ import { BlurImage } from "~/components/blur-image";
 
 export const dynamic = "force-dynamic";
 
+async function getCoverImage(album: AlbumType) {
+  const coverImageId = album.imageIds?.[album.imageIds.length - 1];
+  let coverImage;
+  if (coverImageId) {
+    coverImage = await getImage(coverImageId);
+  }
+  return coverImage || null;
+}
+
 function Header() {
   return (
     <div className="flex items-center justify-between p-8">
@@ -16,13 +25,8 @@ function Header() {
   );
 }
 
-async function Album({ album }: { album: AlbumType }) {
-  const coverImageId = album.imageIds?.[album.imageIds.length - 1];
-  let coverImage;
-  if (coverImageId) {
-    coverImage = await getImage(coverImageId as string);
-  }
-
+async function Album(album: AlbumType) {
+  const coverImage = await getCoverImage(album);
   return (
     <div className=" overflow-hidden rounded-lg border shadow-white drop-shadow-md">
       <div className="flex  flex-col bg-zinc-800/50">
@@ -68,7 +72,7 @@ export default async function Albums() {
               <div className="grid grid-cols-2 gap-x-2 gap-y-2 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 xl:gap-x-8 xl:gap-y-8">
                 {albums.map((album) => (
                   <Link key={album.id} href={`/albums/${album.id}`}>
-                    <Album album={album} />
+                    <Album {...album} />
                   </Link>
                 ))}
               </div>

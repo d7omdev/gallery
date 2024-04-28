@@ -33,8 +33,9 @@ const CreateAlbumButton = () => {
         name,
       });
       toast.success("Album created successfully");
-      router.push("/albums");
+      router.refresh();
     } catch (error) {
+      toast.error("Error creating album: Change the name and try again.");
       console.error("Error creating album", error);
     }
   };
