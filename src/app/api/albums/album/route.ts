@@ -7,8 +7,8 @@ import {
 
 export async function GET(request: Request) {
   try {
-    const albumName = await request.json();
-    const album = await getAlbum(albumName);
+    const albumId = await request.json();
+    const album = await getAlbum(albumId);
     let body = JSON.stringify(album);
     return new Response(body, { status: 200 });
   } catch (error) {

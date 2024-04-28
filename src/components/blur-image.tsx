@@ -10,7 +10,7 @@ const BlurImage = (image: ImageType) => {
   return (
     <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
       <Image
-        alt=""
+        alt={image.name}
         src={image.url}
         fill
         sizes="(min-width: 1280px) 1280px, (min-width: 1024px) 1024px, (min-width: 768px) 768px, 100vw"
