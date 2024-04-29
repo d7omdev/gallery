@@ -20,8 +20,8 @@ Before getting started, make sure you have the following installed:
 Clone the repository:
 
 ```sh
-git clone https://github.com/yourusername/gallery-project.git
-cd gallery-project
+git clone https://github.com/abdulrahmanDev1/gallery
+cd gallery
 ```
 
 Install dependencies using pnpm:
