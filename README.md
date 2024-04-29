@@ -2,6 +2,8 @@
 
 Welcome to the Gallery Project, a full-featured image gallery web application built with Next.js, Clerk, Radix UI, and other technologies. This project allows users to view albums of images, add images to albums, and manage their own albums.
 
+you can visit the project at [galeme.vercel.app](https://galeme.vercel.app/)
+
 ## Getting Started
 
 These instructions will guide you through setting up the project on your local machine for development and testing purposes.
