@@ -1,6 +1,8 @@
 # Gallery Project
 
-Welcome to the Gallery Project, a full-featured image gallery web application built with Next.js, Clerk, Radix UI, and other technologies. This project allows users to view albums of images, add images to albums, and manage their own albums.
+Welcome to the Gallery Project, a full-featured image gallery web application built with Next.js, Clerk, Shadcn UI, and other technologies. This project allows users to view albums of images, add images to albums, and manage their own albums.
+
+you can visit the project at [galeme.vercel.app](https://galeme.vercel.app/)
 
 ## Getting Started
 
@@ -18,8 +20,8 @@ Before getting started, make sure you have the following installed:
 Clone the repository:
 
 ```sh
-git clone https://github.com/yourusername/gallery-project.git
-cd gallery-project
+git clone https://github.com/abdulrahmanDev1/gallery
+cd gallery
 ```
 
 Install dependencies using pnpm:
