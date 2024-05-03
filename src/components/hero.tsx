@@ -40,7 +40,7 @@ export const HeroSection = () => {
           The only gallery you'll ever need!
         </h1>
         <p className="my-6 max-w-xl text-center text-base leading-relaxed md:text-lg md:leading-relaxed">
-          GalleMe is a gallery that allows you to upload and share your images
+          GaleMe is a gallery that allows you to upload and share your images
           with the world. It's fast, easy, and secure.
         </p>
         <SignInButton>
