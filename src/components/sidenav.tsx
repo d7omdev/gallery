@@ -50,7 +50,11 @@ function MobileNav() {
   return (
     <Sheet>
       <SheetTrigger className="z-50 mt-2 pl-2 ">
-        <Menu className=" rounded-sm bg-black/50 backdrop-blur-sm " />
+        <Menu
+          height={25}
+          width={25}
+          className=" rounded-sm bg-black/50 backdrop-blur-sm "
+        />
       </SheetTrigger>
       <SheetContent className=" overflow-hidden">
         <NavigationMenu className="  list-none flex-col items-start gap-4 md:flex">
@@ -97,7 +101,7 @@ export function SideNav(props: React.HTMLAttributes<HTMLDivElement>) {
       <div className="sticky top-0 hidden p-6 lg:block">
         <Nav />
       </div>
-      <div className=" sticky top-0 lg:hidden">
+      <div className=" sticky top-2 lg:hidden">
         <MobileNav />
       </div>
     </div>

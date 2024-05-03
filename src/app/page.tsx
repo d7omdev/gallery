@@ -1,6 +1,7 @@
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import { Images } from "../components/images";
 import { UploadButton } from "../components/upload-button";
+import { HeroSection } from "~/components/hero";
 
 export const dynamic = "force-dynamic";
 
@@ -17,8 +18,8 @@ export default function HomePage() {
   return (
     <main className="flex w-full">
       <SignedOut>
-        <div className="h-full w-full text-center text-2xl">
-          Please sign in to view the gallery
+        <div className="h-screen w-full">
+          <HeroSection />
         </div>
       </SignedOut>
       <SignedIn>

@@ -2,7 +2,7 @@ import "~/styles/globals.css";
 import "@uploadthing/react/styles.css";
 import { Inter } from "next/font/google";
 
-import { ClerkProvider, SignedIn } from "@clerk/nextjs";
+import { ClerkProvider, SignedIn, SignedOut } from "@clerk/nextjs";
 import { CSPostHogProvider } from "~/app/_analytics/provider";
 import TopNav from "../components/topnav";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
@@ -33,16 +33,23 @@ export default function RootLayout({
       <CSPostHogProvider>
         <html lang="en">
           <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
-          <body className={`${inter.className} dark`}>
-            <div className="flex h-screen flex-col">
-              <TopNav />
-              <main className=" flex ">
-                <SignedIn>
-                  <SideNav className="z-50 w-0 md:w-1/5" />
-                </SignedIn>
-                {children}
-              </main>
-            </div>
+          <body className={`${inter.className} dark relative`}>
+            <SignedOut>
+              <div className="sticky top-0 z-50 flex w-full items-center justify-center bg-[#020617]">
+                <TopNav />
+              </div>
+            </SignedOut>
+            <SignedIn>
+              <div className="sticky top-0 z-50 flex w-full items-center justify-center">
+                <TopNav />
+              </div>
+            </SignedIn>
+            <main className="flex">
+              <SignedIn>
+                <SideNav className="z-50 w-0 md:w-1/5" />
+              </SignedIn>
+              {children}
+            </main>
             <Toaster />
             {process.env.NODE_ENV === "development" ? "" : <SpeedInsights />}
           </body>
